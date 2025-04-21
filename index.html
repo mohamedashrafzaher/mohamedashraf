@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohamed Ashraf Games</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #0f0f0f;
+      color: white;
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+    .hidden { display: none; }
+
+    /* خلفية متحركة */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://media.giphy.com/media/3ohzdIuqJoo8bXcXf2/giphy.gif');
+      background-size: cover;
+      background-position: center;
+      animation: moveBackground 30s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 48px;
+      color: #00ffe5;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #00ffe5; }
+      100% { text-shadow: 0 0 20px #00ffe5; }
+    }
+
+    nav {
+      background-color: #222;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: #00ffe5;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 36px;
+      color: #00ffe5;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      padding: 25px;
+      border-radius: 12px;
+      width: 280px;
+      margin: auto;
+      border: 1px solid #333;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      border-color: #00ffe5;
+    }
+
+    .game-link a {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #00ffe5;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .game-link a:hover {
+      background-color: #00ccaa;
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    /* تسجيل دخول */
+    .login-form {
+      max-width: 400px;
+      margin: auto;
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .login-form button {
+      background-color: #00ffe5;
+      color: #000;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .login-form button:hover {
+      background-color: #00ccaa;
+    }
+
+    /* زر كتم الصوت */
+    .mute-btn {
+      background-color: #ff4444;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- خلفية متحركة -->
+  <div class="background"></div>
+
+  <!-- ✅ صفحة تسجيل دخول -->
+  <section id="loginPage">
+    <h2 class="logo">🎮 Mohamed Ashraf Games</h2>
+    <div class="login-form">
+      <input type="text" placeholder="اسم المستخدم" id="username">
+      <input type="password" placeholder="كلمة المرور" id="password">
+      <button onclick="login()">تسجيل الدخول</button>
+    </div>
+  </section>
+
+  <!-- ✅ صفحة الموقع الرئيسية -->
+  <div id="mainPage" class="hidden">
+
+    <header>
+      <h1 class="logo">Mohamed Ashraf Games</h1>
+      <p>مرحبًا بك في عالم الإبداع والألعاب الممتعة</p>
+    </header>
+
+    <nav>
+      <a onclick="goTo('game')">الألعاب</a>
+      <a onclick="goTo('contact')">تواصل معنا</a>
+      <a onclick="logout()">تسجيل خروج</a>
+    </nav>
+
+    <section id="game">
+      <h2>جرب ألعابنا الجديدة 🎮</h2>
+
+      <!-- قائمة الألعاب -->
+      <div class="card">
+        <h3>Subway Surfers</h3>
+        <p>اركض، اقفز، وتفادى القطارات في لعبة الأكشن الممتعة.</p>
+        <div class="game-link">
+          <a href="https://ubg365.github.io/subway-surfers" target="_blank">العب الآن 🚀</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Happy Wheels</h3>
+        <p>اقضِ وقتًا ممتعًا في لعبة دراجات مرحة ومليئة بالمفاجآت!</p>
+        <div class="game-link">
+          <a href="https://www.urbangames365.com/happy-wheels" target="_blank">العب الآن 🚴</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Agar.io</h3>
+        <p>تنافس مع لاعبين آخرين لتصبح أكبر خلية في هذا العالم الملون.</p>
+        <div class="game-link">
+          <a href="https://agar.io" target="_blank">العب الآن 🍽️</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Slither.io</h3>
+        <p>تنافس لتصبح أكبر ثعبان في هذا العالم المثير.</p>
+        <div class="game-link">
+          <a href="https://slither.io" target="_blank">العب الآن 🐍</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Tank Trouble</h3>
+        <p>لعبة دبابات مليئة بالإثارة، حاول تدمير خصومك!</p>
+        <div class="game-link">
+          <a href="https://www.tanktrouble.com" target="_blank">العب الآن 🚀</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>تواصل معنا</h2>
+      <p>📧 البريد: <a href="mailto:info@mohamedashrafgames.com">info@mohamedashrafgames.com</a></p>
+      <p>📱 رقم الهاتف: <a href="tel:01122154108">01122154108</a></p>
+      <p>📱 تابعنا على: إنستجرام | تويتر | يوتيوب</p>
+    </section>
+
+    <footer>
+      &copy; 2025 Mohamed Ashraf Games. جميع الحقوق محفوظة.
+    </footer>
+
+    <!-- زر كتم الصوت -->
+    <button class="mute-btn" onclick="toggleMute()">كتم الصوت</button>
+  </div>
+
+  <!-- ✅ الصوتيات (أغنية مصرية) -->
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="" type="audio/mp3"> <!-- أغنية مصرية جديدة -->
+  </audio>
+
+  <audio id="buttonClickSound">
+    <source src="" type="audio/mp3">
+  </audio>
+
+  <script>
+    // التبديل بين كتم الصوت وتشغيله
+    let isMuted = false;
+
+    function toggleMute() {
+      const backgroundMusic = document.getElementById('backgroundMusic');
+      isMuted = !isMuted;
+      backgroundMusic.muted = isMuted;
+
+      const buttonText = isMuted ? "تشغيل الصوت" : "كتم الصوت";
+      document.querySelector('.mute-btn').textContent = buttonText;
+    }
+
+    // تشغيل مؤثر صوتي عند الضغط على الأزرار
+    function playButtonClickSound() {
+      const sound = document.getElementById('buttonClickSound');
+      sound.play();
+    }
+
+    function login() {
+      playButtonClickSound();  // تشغيل صوت عند تسجيل الدخول
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "admin" && pass === "1234") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainPage").classList.remove("hidden");
+      } else {
+        alert("اسم المستخدم أو كلمة المرور غير صحيحة");
+      }
+    }
+
+    function logout() {
+      playButtonClickSound();  // تشغيل صوت عند تسجيل الخروج
+      document.getElementById("mainPage").classList.add("hidden");
+      document.getElementById("loginPage").style.display = "block";
+    }
+
+    function goTo(sectionId) {
+      playButtonClickSound();  // تشغيل صوت عند التنقل بين الأقسام
+      document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</
