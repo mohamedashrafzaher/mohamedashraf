@@ -16,32 +16,12 @@
       background-color: #0f0f0f;
       color: white;
       direction: rtl;
-      overflow-x: hidden;
     }
 
     .hidden { display: none; }
 
-    /* خلفية متحركة */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://media.giphy.com/media/3ohzdIuqJoo8bXcXf2/giphy.gif');
-      background-size: cover;
-      background-position: center;
-      animation: moveBackground 30s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes moveBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-
     header {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: #111;
       padding: 40px 20px;
       text-align: center;
     }
@@ -180,9 +160,6 @@
 </head>
 <body>
 
-  <!-- خلفية متحركة -->
-  <div class="background"></div>
-
   <!-- ✅ صفحة تسجيل دخول -->
   <section id="loginPage">
     <h2 class="logo">🎮 Mohamed Ashraf Games</h2>
@@ -267,13 +244,13 @@
     <button class="mute-btn" onclick="toggleMute()">كتم الصوت</button>
   </div>
 
-  <!-- ✅ الصوتيات (أغنية مصرية) -->
+  <!-- ✅ الصوتيات -->
   <audio id="backgroundMusic" loop autoplay>
-    <source src="" type="audio/mp3"> <!-- أغنية مصرية جديدة -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
   </audio>
 
   <audio id="buttonClickSound">
-    <source src="" type="audio/mp3">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mp3">
   </audio>
 
   <script>
@@ -321,4 +298,4 @@
   </script>
 
 </body>
-</
+</html>
